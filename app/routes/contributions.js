@@ -54,7 +54,8 @@ function ContributionsHandler(db) {
             });
         }
         // Prevent more than 30% contributions
-        if (preTax + afterTax + roth > 30) {
+        const totalContributions = preTax + afterTax + roth;
+        if (totalContributions > 30 && totalContributions < 0) {
             return res.render("contributions", {
                 updateError: "Contribution percentages cannot exceed 30 %",
                 userId,
